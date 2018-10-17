@@ -77,6 +77,43 @@ $(document).ready(function(){
 		}
 	});
     
+    // Add Product Validation
+    $("#add_product").validate({
+		rules:{
+            category_id:{
+				required:true
+			},
+			name:{
+				required:true
+			},
+            description:{
+				required:true
+			},
+			code:{
+				required:true
+			},
+            color:{
+				required:true
+			},
+            price:{
+				required:true,
+                number:true
+			},
+            image:{
+				required:true
+			}
+		},
+		errorClass: "help-inline",
+		errorElement: "span",
+		highlight:function(element, errorClass, validClass) {
+			$(element).parents('.control-group').addClass('error');
+		},
+		unhighlight: function(element, errorClass, validClass) {
+			$(element).parents('.control-group').removeClass('error');
+			$(element).parents('.control-group').addClass('success');
+		}
+	});
+    
     // Edit Category Validation
     $("#edit_category").validate({
 		rules:{
@@ -158,9 +195,41 @@ $(document).ready(function(){
 	});
     
     $(".delCat").click(function(){
-        if(confirm('Are you sure you want to delete this Category?')){
-            return true;
-        }
-        return false;
+        var id = $(this).attr('id');
+        var rel = $(this).attr('rel');
+        swal({
+          title: "Are you sure?",
+          text: "You will delete this Category!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            window.location.href = "/admin/"+rel+"/"+id;
+          } else {
+            swal("Your product is safe!");
+          }
+        });
     });
+    
+    $(".delProd").click(function(){
+        var id = $(this).attr('id');
+        var rel = $(this).attr('rel');
+        swal({
+          title: "Are you sure?",
+          text: "You will delete this Product!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            window.location.href = "/admin/"+rel+"/"+id;
+          } else {
+            swal("Your product is safe!");
+          }
+        });
+    });
+    
 });

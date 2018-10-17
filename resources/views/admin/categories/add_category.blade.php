@@ -8,7 +8,7 @@
   </div>
   <div class="container-fluid"><hr>
     <div class="row-fluid">
-      <div class="span12">
+      <div class="span6">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
             <h5>Add Category</h5>
@@ -18,13 +18,13 @@
               <div class="control-group">
                 <label class="control-label">Category Name</label>
                 <div class="controls">
-                  <input type="text" name="name" id="name">
+                  <input type="text" class="span11" name="name" id="name">
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label">Category Level</label>
                 <div class="controls">
-                  <select name="parent_id">
+                  <select class="span11" name="parent_id">
                       <option value="0">Main Category</option>
                       @foreach($levels as $val)
                         <option value="{{ $val->id }}">{{ $val->name }}</option>
@@ -35,13 +35,13 @@
               <div class="control-group">
                 <label class="control-label">Description</label>
                 <div class="controls">
-                  <textarea name="description" id="description"></textarea>
+                  <textarea class="span11" name="description" id="description"></textarea>
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label">URL</label>
                 <div class="controls">
-                  <input type="text" name="url" id="url">
+                  <input type="text" class="span11" name="url" id="url">
                 </div>
               </div>
               <div class="form-actions">

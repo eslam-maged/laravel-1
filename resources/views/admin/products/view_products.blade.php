@@ -31,7 +31,12 @@
               <thead>
                 <tr>
                   <th>Product ID</th>
+                  <th>Category Name</th>
                   <th>Product Name</th>
+                  <th>Product Code</th>
+                  <th>Product Color</th>
+                  <th>Product Price</th>
+                  <th>Product Image</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -40,9 +45,23 @@
                 @foreach($products as $product)
                 <tr class="gradeX">
                   <td>{{ $product->id }}</td>
+                  <td>{{ $product->category->name }}</td>
                   <td>{{ $product->name }}</td>
-                  <td class="center"><a href="{{ url('/admin/edit-product/'.$product->id) }}" class="btn btn-primary btn-mini">Edit</a> <a href="{{ url('/admin/delete-product/'.$product->id) }}" class="delProd btn btn-danger btn-mini">Delete</a></td>
+                  <td>{{ $product->code }}</td>
+                  <td>{{ $product->color }}</td>
+                  <td>{{ $product->price }}</td>
+                  <td><img src="{{ asset('/img/backend_img/products/small/'.$product->image) }}" style="width:70px;"></td>
+                  <td class="center"><a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{ url('/admin/edit-product/'.$product->id) }}" class="btn btn-primary btn-mini">Edit</a> <a id="{{ $product->id }}" rel="delete-product" <?php /* href="{{ url('/admin/delete-product/'.$product->id) }}" */ ?> href="javascript:" class="delProd btn btn-danger btn-mini">Delete</a></td>
                 </tr>
+                  <div id="myModal{{ $product->id }}" class="modal hide">
+                    <div class="modal-header">
+                        <button data-dismiss="modal" class="close" type="button">×</button>
+                        <h3>{{ $product->name }} Full Details</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>Description : {{ $product->description }}</p>
+                    </div>
+                </div>
                 @endforeach
                   
               </tbody>
